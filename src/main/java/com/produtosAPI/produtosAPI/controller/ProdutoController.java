@@ -4,7 +4,7 @@ import com.produtosAPI.produtosAPI.model.Produto;
 import com.produtosAPI.produtosAPI.repository.ProdutoRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Optional;
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -45,6 +45,11 @@ public class ProdutoController {
         produto.setId(id);
         produtoRepository.save(produto);
 
+    }
+
+    @GetMapping
+    public List<Produto> buscar(@RequestParam ("nome")String nome){
+        return produtoRepository.findByNome(nome);
     }
 
 }
